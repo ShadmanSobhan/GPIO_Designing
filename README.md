@@ -145,7 +145,7 @@ Decodes the `DATA` and `EN` signals to produce `PD_IN` and `ND_IN` for the drive
 
 **Figure 12: P & N Driver Output**
 
-<img src="Images/P&N_OUT.png" width="1000">
+<img src="Images/P&N_Out.png" width="1000">
 
 A two-branch output driver consisting of:
 - A **PMOS pull-up** (M1, wtot = 32 µm, L = 180 nm, m = 16) driven by `PD_OUT` through a buffer.
