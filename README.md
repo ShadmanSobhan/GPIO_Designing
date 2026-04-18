@@ -183,31 +183,31 @@ A hysteretic comparator operating in the VDDIO domain. Uses a standard Schmitt t
 ---
 
 ## MOSFET Sizing
-
+ 
 | Block | Position | MOS | Multiplier (m) | Fingers (ng) |
 |-------|----------|-----|----------------|--------------|
 | Level Shifter | First & Last Inverter | PMOS | 1 | 3 |
 | | Shifter | PMOS | 1 | 4 |
 | | First Inverter | NMOS | 1 | 1 |
-| | Second Inverter | | 1 | 2 |
-| | Shifter | | 8 | 4 |
+| | Second Inverter | NMOS | 1 | 2 |
+| | Shifter | NMOS | 8 | 4 |
 | Tri-State Machine | All | All | 1 | 1 |
 | P & N Driver | — | PMOS | 6 | 16 |
-| | — | NMOS | 2 | 16 |
+| P & N Driver | — | NMOS | 2 | 16 |
 | Schmitt Trigger | Inverter | PMOS | 1 | 4 |
-| | Switch | | 1 | 2 |
-| | Feedback | | 1 | 1 |
+| | Switch | PMOS | 1 | 2 |
+| | Feedback | PMOS | 1 | 1 |
 | | Inverter | NMOS | 1 | 2 |
-| | Switch | | 1 | 2 |
-| | Feedback | | 1 | 2 |
+| | Switch | NMOS | 1 | 2 |
+| | Feedback | NMOS | 1 | 2 |
 | Inverter | — | PMOS | 1 | 3 |
 | | — | NMOS | 1 | 1 |
 | Buffer | First Inverter | PMOS | 1 | 3 |
-| | Second Inverter | | 2 | 3 |
+| | Second Inverter | PMOS | 2 | 3 |
 | | First Inverter | NMOS | 1 | 1 |
-| | Second Inverter | | 2 | 1 |
+| | Second Inverter | NMOS | 2 | 1 |
 | PUPD Network | Driver | PMOS | 3 | 1 |
-| | | NMOS | 2 | 1 |
+| | Driver | NMOS | 2 | 1 |
 
 ---
 
