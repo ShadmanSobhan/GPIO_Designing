@@ -187,7 +187,7 @@ A hysteretic comparator operating in the VDDIO domain. Uses a standard Schmitt t
 | Block | Position | MOS | Multiplier (m) | Fingers (ng) |
 |-------|----------|-----|----------------|--------------|
 | Level Shifter | First & Last Inverter | PMOS | 1 | 3 |
-| | Shifter | 1 | 4 |
+| | Shifter | PMOS | 1 | 4 |
 | | First Inverter | NMOS | 1 | 1 |
 | | Second Inverter | | 1 | 2 |
 | | Shifter | | 8 | 4 |
