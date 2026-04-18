@@ -68,6 +68,14 @@ An HBM diode clamp is placed at the pad for ESD protection.
 
 ### Transmitter
 
+**Figure 2: Transmitter Block**
+
+<img src="Images/TX.png" width="1000">
+
+**Figure 3: Transmitter Block Output**
+
+<img src="Images/TX_OUT.png" width="1000">
+
 The transmitter path converts the 1.8 V core signal to a 5 V pad-compatible output. Data flows through:
 
 1. **Level Shifter** — Translates the signal from VDDC (1.8 V) domain to the VDDIO (5 V) domain.
@@ -76,12 +84,24 @@ The transmitter path converts the 1.8 V core signal to a 5 V pad-compatible outp
 
 ### Receiver
 
+**Figure 4: Receiver Block**
+
+<img src="Images/RX.png" width="1000">
+
+**Figure 5: Receiver Block Output**
+
+<img src="Images/RX_OUT.png" width="1000">
+
 The receiver path accepts a 5 V pad signal and converts it to a clean 1.8 V core-level signal. Data flows through:
 
 1. **Schmitt Trigger** — Powered by VDDIO; provides hysteresis to reject noise and glitches on the pad. Enable-controlled via `RX_EN`.
 2. **Inverter** — Powered by VDDC; restores the logic level to the core domain and drives `DATA_TO_CORE`.
 
 ### PUPD Network
+
+**Figure 6: PUPD Network**
+
+<img src="Images/PUPD.png" width="1000">
 
 The pull-up/pull-down network is a standalone sub-circuit used to bias the pad to a defined logic level when no driver is active. It uses its own level shifter and tri-state machine to control a PMOS (pull-up) and NMOS (pull-down) through a 10 KΩ resistor, enabled via `PUPD_EN` and direction-controlled via `PS`.
 
@@ -91,17 +111,41 @@ The pull-up/pull-down network is a standalone sub-circuit used to bias the pad t
 
 ### Level Shifter
 
+**Figure 7: Level Shifter**
+
+<img src="Images/Level_Shifter.png" width="1000">
+
+**Figure 8: Level Shifter Output**
+
+<img src="Images/LS_OUT.png" width="1000">
+
 Converts a VDDC-domain input signal to a VDDIO-domain output. Uses a cross-coupled PMOS pair with NMOS inputs to perform the voltage translation. The circuit is designed to handle the full 1.8 V → 5 V swing reliably.
 
 **Key signals:** `IN` (VDDC domain) → `OUT` (VDDIO domain)
 
 ### Tri-State Machine
 
+**Figure 9: Tri-State Machine**
+
+<img src="Images/TSM.png" width="1000">
+
+**Figure 10: Tri-State Machine Output**
+
+<img src="Images/TSM_OUT.png" width="1000">
+
 Decodes the `DATA` and `EN` signals to produce `PD_IN` and `ND_IN` for the driver stage, and `ENB` for disable control. When `EN` is low, both outputs are forced to a passive state, placing the driver in high-impedance (tri-state).
 
 **Key signals:** `DATA`, `EN` → `PD_IN`, `ND_IN`, `ENB`
 
 ### P & N Driver
+
+**Figure 11: P & N Driver**
+
+<img src="Images/P&N_Driver.png" width="1000">
+
+**Figure 12: P & N Driver Output**
+
+<img src="Images/P&N_OUT.png" width="1000">
 
 A two-branch output driver consisting of:
 - A **PMOS pull-up** (M1, wtot = 32 µm, L = 180 nm, m = 16) driven by `PD_OUT` through a buffer.
@@ -111,11 +155,27 @@ Both branches are buffered independently to ensure fast switching and matched dr
 
 ### Schmitt Trigger
 
+**Figure 13: Schmitt Trigger**
+
+<img src="Images/Schmitt_Trigger.png" width="1000">
+
+**Figure 14: Schmitt Trigger Output**
+
+<img src="Images/ST_OUT.png" width="1000">
+
 A hysteretic comparator operating in the VDDIO domain. Uses a standard Schmitt topology with feedback transistors to set VIH and VIL. The `RX_EN` signal gates the pull-down path, allowing the receiver to be disabled.
 
 **Hysteresis window:** VHYS = (0.1 – 0.3) × VDDIO
 
 ### Inverter & Buffer
+
+**Figure 15: Inverter Circuit**
+
+<img src="Images/Inverter.png" width="1000">
+
+**Figure 16: Buffer Circuit**
+
+<img src="Images/Buffer.png" width="1000">
 
 - **Inverter:** Standard CMOS inverter (PMOS: wtot = 6 µm, ng = 3, m = 1 | NMOS: parameterized). Used in the receiver output stage and inside the tri-state machine.
 - **Buffer:** Two cascaded inverters with progressively larger NMOS (second stage: m = 2) to drive the output with sufficient current. Used inside the P & N Driver.
