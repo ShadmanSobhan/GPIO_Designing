@@ -2,7 +2,7 @@
 This repository contains the design basics of a GPIO.
 
 # GPIO Cell Design
-> A full-custom General Purpose Input/Output (GPIO) cell designed at the transistor level, featuring a transmitter path, receiver path, and pull-up/pull-down network. Designed and simulated using Cadence Virtuoso.
+> A full-custom General Purpose Input/Output (GPIO) cell designed at the transistor level, featuring a transmitter path, receiver path, and pull-up/pull-down network. Designed and simulated using Cadence Virtuoso. The used PDK is Xfab-180.
 
 ---
 
@@ -48,7 +48,13 @@ This repository contains the design basics of a GPIO.
 
 ## Architecture Overview
 
-The GPIO cell supports bidirectional data transfer between a digital core (operating at 1.8 V) and an external pad (operating at 5 V). It consists of three primary functional paths:
+The GPIO cell supports bidirectional data transfer between a digital core (operating at 1.8 V) and an external pad (operating at 5 V). 
+
+**Figure 1: GPIO Circuit**
+
+<img src="Images/GPIO.png" width="1000">
+
+It consists of three primary functional paths:
 
 - **Transmitter (TX):** Drives data from the core to the pad. Includes a level shifter, tri-state machine, and P/N driver.
 - **Receiver (RX):** Receives data from the pad and passes it to the core. Uses a Schmitt trigger for noise immunity, followed by an inverter for level restoration.
